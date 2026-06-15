@@ -230,21 +230,19 @@
         </header>
 
         <div class="dash-content" style="overflow-y: auto;">
-          <div style="background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); overflow: hidden;">
-            <div style="overflow-x: auto; max-height: 50vh; overflow-y: auto;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                <thead style="background: #f1f5f9; border-bottom: 2px solid #e2e8f0;">
-                  <tr>
-                    <th style="padding: 12px 15px; font-size: 13px; font-weight: 700; color: #475569; border-bottom: 2px solid #e2e8f0;">Tanggal</th>
-                    <th style="padding: 12px 15px; font-size: 13px; font-weight: 700; color: #475569; border-bottom: 2px solid #e2e8f0;">Keterangan</th>
-                    <th style="padding: 12px 15px; font-size: 13px; font-weight: 700; color: #475569; border-bottom: 2px solid #e2e8f0; text-align: right;">Jumlah</th>
-                  </tr>
-                </thead>
-                <tbody id="debt-detail-tbody">
-                  <!-- Injected by JS -->
-                </tbody>
-              </table>
-            </div>
+          <div style="background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); max-height: 55vh; overflow-y: auto; overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+              <thead style="background: #f1f5f9; position: sticky; top: 0; z-index: 1;">
+                <tr>
+                  <th style="padding: 12px 15px; font-size: 13px; font-weight: 700; color: #475569; border-bottom: 2px solid #e2e8f0;">Tanggal</th>
+                  <th style="padding: 12px 15px; font-size: 13px; font-weight: 700; color: #475569; border-bottom: 2px solid #e2e8f0;">Keterangan</th>
+                  <th style="padding: 12px 15px; font-size: 13px; font-weight: 700; color: #475569; border-bottom: 2px solid #e2e8f0; text-align: right;">Jumlah</th>
+                </tr>
+              </thead>
+              <tbody id="debt-detail-tbody">
+                <!-- Injected by JS -->
+              </tbody>
+            </table>
           </div>
           
           <!-- Summary & Pay Button -->
