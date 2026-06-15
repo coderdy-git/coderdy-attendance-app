@@ -1338,14 +1338,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }).join('');
         
       } else {
-        // "Recent Activity": Show only PAID debts in reverse-chronological order (Bug #6 fix)
-        const paidDebts = allDebts.filter(d => d.is_paid === 1);
-        if (paidDebts.length === 0) {
-          debtList.innerHTML = '<p style="text-align:center; color:#94a3b8; font-size:14px; padding:20px;">Belum ada aktivitas piutang yang lunas.</p>';
+        // "Recent Activity": Show ALL debt transactions (paid & unpaid) in reverse-chronological
+        const sortedDebts = [...allDebts].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        if (sortedDebts.length === 0) {
+          debtList.innerHTML = '<p style="text-align:center; color:#94a3b8; font-size:14px; padding:20px;">Belum ada transaksi piutang.</p>';
           return;
         }
         
-        debtList.innerHTML = paidDebts.map(d => {
+        debtList.innerHTML = sortedDebts.map(d => {
           const dateStr = new Date(d.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
           const amountStr = formatter.format(d.amount);
           const isPaid = d.is_paid === 1;
