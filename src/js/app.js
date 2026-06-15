@@ -1841,10 +1841,14 @@ document.addEventListener('DOMContentLoaded', () => {
       // Handle Avatar
       const avatarUrl = user.user_metadata?.avatar_url || user.user_metadata?.picture;
       if (avatarUrl) {
-
         profileDefaultAvatar.style.display = 'none';
         profileAvatarLarge.src = avatarUrl;
         profileAvatarLarge.style.display = 'block';
+        profileAvatarLarge.onerror = () => {
+          profileAvatarLarge.style.display = 'none';
+          profileAvatarLarge.src = '';
+          profileDefaultAvatar.style.display = 'block';
+        };
       }
       
       // Attempt background push sync when dashboard opens
