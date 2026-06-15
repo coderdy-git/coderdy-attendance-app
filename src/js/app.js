@@ -281,8 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     
     // UI Loading state
-    btnText.style.opacity = '0.5';
-    spinner.classList.remove('hidden');
+    const originalContent = googleBtn.innerHTML;
+    googleBtn.innerHTML = '<div class="spinner" style="border-color: rgba(255,255,255,0.2); border-top-color: white;"></div>';
     googleBtn.disabled = true;
     messageBox.classList.add('hidden');
 
@@ -291,19 +291,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (error) {
         showMessage(error.message, 'error');
-        resetBtn();
+        googleBtn.innerHTML = originalContent;
+        googleBtn.disabled = false;
       }
       // If successful, the page will redirect to Google's consent screen.
     } catch (err) {
       showMessage('Network error or configuration issue.', 'error');
-      resetBtn();
+      googleBtn.innerHTML = originalContent;
+      googleBtn.disabled = false;
     }
   });
 
   passkeyLoginBtn?.addEventListener('click', async (e) => {
     e.preventDefault();
-    passkeyLoginBtnText.style.opacity = '0.5';
-    passkeyLoginSpinner.classList.remove('hidden');
+    const originalContent = passkeyLoginBtn.innerHTML;
+    passkeyLoginBtn.innerHTML = '<div class="spinner" style="border-color: rgba(255,255,255,0.2); border-top-color: white;"></div>';
     passkeyLoginBtn.disabled = true;
     messageBox.classList.add('hidden');
 
@@ -311,16 +313,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const { data, error } = await AuthService.signInWithPasskey();
       if (error) {
         showMessage(error.message, 'error');
+        passkeyLoginBtn.innerHTML = originalContent;
+        passkeyLoginBtn.disabled = false;
       } else if (data?.session) {
         showDashboard(data.session.user);
       }
     } catch (err) {
       showMessage('Passkey login failed or cancelled.', 'error');
+      passkeyLoginBtn.innerHTML = originalContent;
+      passkeyLoginBtn.disabled = false;
     }
-    
-    passkeyLoginBtnText.style.opacity = '1';
-    passkeyLoginSpinner.classList.add('hidden');
-    passkeyLoginBtn.disabled = false;
   });
 
   // Custom Toast System
