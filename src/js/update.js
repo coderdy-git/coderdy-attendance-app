@@ -4,9 +4,7 @@
 const GITHUB_OWNER = 'coderdy-git';
 const GITHUB_REPO = 'coderdy-attendance-app';
 
-const CURRENT_VERSION = typeof __APP_VERSION__ !== 'undefined'
-  ? __APP_VERSION__
-  : '1.0.0';
+const CURRENT_VERSION = __APP_VERSION__;
 
 let _updateModal = null;
 let _updateData = null;

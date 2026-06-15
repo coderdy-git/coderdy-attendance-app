@@ -28,12 +28,12 @@ jobs:
       - name: Setup SDK
         run: yes | sdkmanager --install "platforms;android-36" "build-tools;36.0.0" 2>&1
 
-      - name: Build web
+      - name: Set version & build web
         run: |
+          npm version 1.0.${{ github.run_number }} --no-git-tag-version
           npm ci
           echo "VITE_SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> .env
           echo "VITE_SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env
-          echo "VITE_APP_VERSION=1.0.${{ github.run_number }}" >> .env
           npm run build 2>&1
 
       - name: Gradle build
